@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  backend:
+    image: backend-client:0.0.1
+    networks:
+      - pgnet
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - SERVER_PORT= 8081
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://pgcslave2/postgres
+
+networks:
+  pgnet:
+    external: true
+    name: pgnet
